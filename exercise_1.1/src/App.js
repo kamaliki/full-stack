@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const Part = (props) => {
   return (
     <div>
@@ -7,6 +9,28 @@ const Part = (props) => {
     </div>
   );
 };
+
+const Hello = ({name, age}) => { 
+
+  //const {name, age} = props.name;
+  //const age = props.age;
+
+  /*a helper function that returns age in years
+  const bornYear = () => {
+   const yearNow = new Date().getFullYear(); //get current year
+   return yearNow - props.age; // return age in years
+  }; */
+  const bornYear = () => new Date().getFullYear() - age; //return age in years 
+
+  return (
+    <div>
+      <p>
+        <h1>Hello {name}, you are {age} years old</h1>
+      </p>
+      <p> So you were probably born in {bornYear()}</p>
+    </div>
+  );
+}
 
 const Content = () => {
   const part1 = 'Fundamentals of React';
@@ -38,11 +62,23 @@ const Header = () => {
 }
 
 const App = () => {
+  //counter initialized to 0
+  const [counter, setCounter] = useState(0); //destructuring
+  
+  setTimeout(() => setCounter(counter + 1), 1000);
+
+  console.log('rendering ... ',counter);
+  const name = 'Max';
+  const age = 18;
+
   return (
     <div>
       <Header />
+      <Hello name = {name} age = {age}/>
       <Content />
+      <div>{counter}</div>
     </div>
+  
   );
 }
 
