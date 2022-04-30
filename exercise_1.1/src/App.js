@@ -60,7 +60,7 @@ const Header = () => {
     </div>
   );
 }
-
+/*
 const App = () => {
   //counter initialized to 0
   const [counter, setCounter] = useState(0); //destructuring
@@ -82,4 +82,96 @@ const App = () => {
   );
 }
 
+const History = (props) => {
+  if (props.allClicks.length === 0) {
+    return (
+      <div>
+        the app is used by pressing the buttons
+      </div>
+    )
+  }
+  return (
+    <div>
+      button press history: {props.allClicks.join(' ')}
+    </div>
+  )
+}
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+);
+
+const App = () => {
+  const [left, setLeft] = useState(0);
+  const [right, setRight] = useState(0);
+  const [allClicks, setAll] = useState([]);
+
+  const handleLeftClick = () => {
+    setAll(allClicks.concat('L'));
+    setLeft(left + 1);
+  }
+  const handleRightClick = () => {
+    setAll(allClicks.concat('R'));
+    setRight(right + 1);
+  }
+
+  return (
+    <div>
+      {left}
+      <Button handleClick={handleLeftClick} text ='Left'/>
+      <Button handleClick={handleRightClick} text = 'Right'/>
+      {right}
+      <History allClicks={allClicks}/>
+    </div>
+  );
+} 
+
+/*
+const App = () => {
+  const [clicks, setClicks] = useState({left: 0, right: 0});
+
+  const handleLeftClick = () => {
+    const newClicks = { ...clicks, left: clicks.left + 1};
+    setClicks(newClicks); 
+  }
+  const handleRightClick = () => {
+    const newClicks = { ...clicks, right: clicks.right + 1};
+    setClicks(newClicks);
+  }
+
+  return (
+    <div>
+      {clicks.left}
+      <button onClick={handleLeftClick}>Left</button>
+      <button onClick={handleRightClick}>Right</button>
+      {clicks.right}
+    </div>
+  );
+}
+*/
+const App = () => {
+  const [value, setValue] = useState(10)
+
+  const setToValue = (newValue) => {
+    console.log('value now', newValue)
+    setValue(newValue)
+  }
+
+  return (
+    <div>
+      {value}
+      <button onClick={() => setToValue(1000)}>
+        thousand
+      </button>
+      <button onClick={() => setToValue(0)}>
+        reset
+      </button>
+      <button onClick={() => setToValue(value + 1)}>
+        increment
+      </button>
+    </div>
+  )
+}
 export default App;
